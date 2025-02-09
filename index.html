@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TabbedGroups</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Panthera">
+        
+        <link rel="stylesheet" href="Styles/style.css" />
+        <link rel="stylesheet" href="Styles/icons.css" />
+    </head>
+<body>
+
+    <div style="width: 100%; height: 100%; text-align: center; display: flex; align-items: center; justify-content: center;">
+        
+        <span style="display: inline-flex; flex-direction: row; min-height: fit-content;">
+
+            <ul name="selector-group" class="poly-button-wrapper strip-li" data-selector-group="1" style="margin: 0; display: inline-block;">
+                <li><div class="poly-parallelogram wrapper vertical">
+                    <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 8em;">
+                        <span>Info</span><input type="radio" name="selector" value="1" class="strip-radio">
+                    </label>
+                </div></li>
+                <li><div class="poly-parallelogram wrapper vertical">
+                    <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 8em;">
+                        <span>Projects</span><input type="radio" name="selector" value="2" class="strip-radio">
+                    </label>
+                </div></li>
+                <li><div class="poly-parallelogram wrapper vertical">
+                    <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 8em;">
+                        <span>Posts</span><input type="radio" name="selector" value="3" class="strip-radio">
+                    </label>
+                </div></li>
+            </ul>
+
+            <div name="section-group" data-selector-group="1" class="overlap-sections" style="text-align: left;">
+
+                <section data-value="1" class="main-section"><!--Info-->
+                    <ul name="selector-group" class="strip-li" data-selector-group="2" style=" padding: 0px 10px; margin: 0;">
+                        <li style="display: inline-block;"><label class="tab poly"><span>About</span><input type="radio" name="selector" value="1" class="strip-radio"></label></li>
+                        <li style="display: inline-block;"><label class="tab poly"><span>Links</span><input type="radio" name="selector" value="2" class="strip-radio"></label></li>
+                        <li style="display: inline-block;"><label class="tab poly"><span>Certifications</span><input type="radio" name="selector" value="3" class="strip-radio"></label></li>
+                    </ul>
+                    <div name="section-group" data-selector-group="2" class="overlap-sections size-sections subsection-border">
+                        <section data-value="1" style="background-color: rgba(100, 148, 237, 0.15); overflow: auto;"><!--About-->
+                            <h3>From playing games to making games.</h3>
+                            <p>
+                                My passion for creation and games has led me to become a programmer. 
+                                Programming provides challenges I enjoy overcoming and a way for me to create new things. 
+                                I use this to drive myself and learn new programming languages and new ways to make things, building on previous 
+                                knowledge I have obtained over the years, looking for my next project.<br><br>
+                
+                                I first started down this road in high school (2015) I entered a game design class where I used Unreal Engine's blueprint system to 
+                                discover a new hobby and creative outlet, making game prototypes. This led me to become a programmer, despite the fact that actual code intimidated me at the time.<br><br>
+                
+                                After high school I went to the Academy of Art University to learn video game programming (2017-2019) where I learned C++ and programming principles such as object oriented programming and algorithms. 
+                                In my spare time I still used Unreal Engine for fun.<br><br>
+                
+                                I transferred to Southern New Hampshire University (2020-present), when Covid hit, where I am now earning my Computer Science degree and learning Java, Python, and C++. 
+                                During my transfer I also switched to using Unity and C# to create game project ideas I have had as I found the engine created lighter weight game files more suited to my needs.<br><br>
+                
+                                I have also recently (2023) picked up HTML, CSS, and JavaScript to begin learning web development which has allowed me to create this page myself allong with other web projects found in my github repos.<br><br>
+                            </p>
+                        </section>
+                        <section data-value="2" style="background-color: rgba(100, 148, 237, 0.15); overflow: auto;"><!--Links-->
+                            <p>
+                                Contact me here:
+                                <ul><li>
+                                    <i class="icon envelope"></i> <a href="mailto:pantheradigitalonline@gmail.com">pantheradigitalonline@gmail.com</a>
+                                </li></ul>
+                                <br>View, in browser, web based elements I've made here:
+                                <ul><li>
+                                    <i class="icon codepen"></i> <a href="https://codepen.io/PantheraDigital" target="_blank">CodePen.io</a>
+                                </li></ul>
+                                <br>Check out my game projects and related tools for devs:
+                                <ul>
+                                    <li>
+                                        <i class="icon itch-io"></i> <a href="https://pantheraonline.itch.io/" target="_blank">Itch.io</a>
+                                    </li>
+                                    <li>
+                                        <i class="icon open-box-arrow"></i> <a href="https://www.fab.com/sellers/PantheraDigital" target="_blank">Fab.com</a> (Unity/Unreal)
+                                    </li>
+                                    <li>
+                                        <i class="icon unity"></i> <a href="https://assetstore.unity.com/publishers/57131" target="_blank">Unity Asset Store</a>
+                                    </li>
+                                </ul>
+                                <br>And here is my Github with repositories holding random code projects of mine, both personal and from school:
+                                <ul><li>
+                                    <i class="icon github"></i> <a href="https://github.com/PantheraDigital?tab=repositories" target="_blank">Github.com</a>
+                                </li></ul>
+                            </p>
+                        </section>
+                        <section data-value="3" style="background-color: rgba(100, 148, 237, 0.15); overflow: auto;"><!--Certs-->
+                            <div style="display: flex; gap: 20px; flex-direction: column;">
+                                <div style="background-color: rgba(0, 0, 0, 0.04); padding: 10px; display: flex; flex-direction: row-reverse; justify-content: space-between;">
+                                    <img class="" src="Pics/PythonCertificate.webp" alt="" loading="lazy" style="align-self: flex-start; max-width: 400px; width: 50%; min-width: 244px;" >
+                                    <div class="">
+                                        <h4 class="">PCEP - Entry-Level Python Programming</h4><!--title-->
+                                        <p class="">
+                                            Certification earned through Python Institute
+                                            <br><a href="https://pythoninstitute.org/pcep">https://pythoninstitute.org/pcep</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div style="background-color: rgba(0, 0, 0, 0.04); padding: 10px; display: flex; flex-direction: row-reverse; justify-content: space-between;">
+                                    <img class="" src="Pics/AKLRDi9.webp" alt="" loading="lazy" style="align-self: flex-start; display: inline-block; max-width: 400px; width: 50%; min-width: 244px; height: auto;" >
+                                    <div class="">
+                                        <h4 class="">Foundational C# w/ Microsoft Certification</h4><!--title-->
+                                        <p class="">
+                                            Certification earned through FreeCodeCamp
+                                            <br><a href="https://www.freecodecamp.org/learn/foundational-c-sharp-with-microsoft/">https://www.freecodecamp.org/learn/foundational-c-sharp-with-microsoft/</a>
+                                            <br>as well as Microsoft
+                                            <br><a href="https://learn.microsoft.com/en-us/training/paths/get-started-c-sharp-part-1/">https://learn.microsoft.com/en-us/training/paths/get-started-c-sharp-part-1/</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div style="background-color: rgba(0, 0, 0, 0.04); padding: 10px; display: flex; flex-direction: row-reverse; justify-content: space-between;">    
+                                    <img class="" src="Pics/UGiGsrA.webp" alt="" loading="lazy" style="align-self: flex-start; max-width: 400px; width: 50%; min-width: 244px;" >
+                                    <div class="">
+                                        <h4 class="">JavaScript Algorithms and Data Structures Certification</h4><!--title-->
+                                        <p class="">
+                                            Certification earned through FreeCodeCamp
+                                            <br><a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/">https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <section data-value="2" class="main-section"><!--Projects-->
+                    <ul name="selector-group" class="strip-li" data-selector-group="3" style=" padding: 0px 10px; margin: 0;">
+                        <li style="display: inline-block;"><label class="tab poly"><span>Games</span><input type="radio" name="selector" value="1" class="strip-radio"></label></li>
+                        <li style="display: inline-block;"><label class="tab poly"><span>Tools</span><input type="radio" name="selector" value="2" class="strip-radio"></label></li>
+                        <li style="display: inline-block;"><label class="tab poly"><span>Other</span><input type="radio" name="selector" value="3" class="strip-radio"></label></li>
+                    </ul>
+                    <div name="section-group" data-selector-group="3" class="overlap-sections size-sections subsection-border">
+                        <section data-value="1" style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
+                        <section data-value="2" style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
+                        <section data-value="3" style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
+                    </div>
+                </section>
+
+                <section data-value="3" class="main-section"><!--Posts-->
+                    <div style=" padding: 0px 10px; margin: 0; height: 29px;"></div>
+                    <div class=" size-sections subsection-border" style="position: relative;">
+                        <section style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
+                    </div>
+                </section>
+
+            </div>
+        
+        </span>
+
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
