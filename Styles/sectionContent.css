@@ -1,0 +1,169 @@
+.remove-marker::marker,
+.remove-marker::-webkit-details-marker {
+    display: none;
+    content: "";
+}
+
+
+/*
+
+    Certs body
+
+*/
+.cert-list {
+    margin: 0;
+    padding: 0;
+}
+
+.cert-container {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: inset 1px 1px 5px 1px black;
+
+    overflow: auto;
+}
+
+.cert-img {
+    max-width: 400px;
+    width: 50%;
+    min-width: 244px;
+
+    float: right;
+}
+
+@media (max-width: 599px) {
+    .cert-img {
+        float: none;
+    }
+}
+
+/*
+
+    Projects body
+
+*/
+.project-list {
+    margin: 0;
+    padding: 0;
+}
+
+.project-li {
+    background-color: rgba(0, 0, 0, 0.15);
+    box-shadow: inset 1px 1px 5px 1px black;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.project-container {
+    overflow: auto;
+    /*sizes container to floating img*/
+    margin-bottom: 10px;
+}
+
+.project-details {
+    overflow: auto;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid slateblue;
+    border-left: 2px solid slateblue;
+}
+
+.project-details>*:not(summary) {
+    padding-left: 5px;
+}
+
+.project-details[open] {
+    border-top: 2px solid slateblue;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid slateblue;
+
+}
+
+.project-details[open] .project-summary {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 50%);
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+}
+
+.project-details[open] .project-summary:hover {
+    background-size: 100% 100%;
+}
+
+.project-details[open] .project-summary:focus-within .icon {
+    --color: rgb(0, 255, 255);
+}
+
+.project-summary {
+    background: linear-gradient(to top right, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 50%);
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    transition: background 0.3s;
+}
+
+.project-summary:hover {
+    background-size: 100% 100%;
+}
+
+.project-summary:focus-within .icon {
+    --color: rgb(0, 255, 255);
+}
+
+.project-img {
+    max-width: 400px;
+    width: 50%;
+    min-width: 244px;
+    margin-left: 5px;
+
+    float: right;
+}
+
+@media (max-width: 599px) {
+    .project-img {
+        float: none;
+    }
+}
+
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
