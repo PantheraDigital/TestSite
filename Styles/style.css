@@ -1,9 +1,63 @@
+:root{
+    --main-color: rgb(40, 40, 40);
+    --highlight-color: rgb(255, 140, 0);
+    --highlight-color-dark: rgb(149,82,0);
+
+    --body-color: rgba(100, 148, 237, 0.15);
+    --body-gradient: none;/*linear-gradient(324deg, rgba(45,45,45,1) 15%, rgba(35,35,35,1) 85%);*/
+
+    --btn-selected-color: var(--main-color);
+    --btn-hover-color: rgb(52,58,75);
+    --btn-active-color: rgb(62,70,93);
+    --btn-neutral-color: rgb(97, 97, 97);
+}
+
 body{
     height: 100vh;
     width: 100vw;
     margin: 0;
     padding: 0;
-    background-color: rgb(255, 252, 244);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+body a:link{
+    color: rgb(0, 228, 228);
+}
+body a:visited{
+    color:rgb(123, 104, 238);
+}
+body a:hover{
+    color: rgb(255, 140, 0);
+}
+
+
+/*
+ *
+ *      Style
+ *
+ */
+
+.vertical-text-right{
+    writing-mode: vertical-lr; 
+    text-orientation:sideways; 
+    transform: rotate(180deg);
+}
+.vertical-text-left{
+    writing-mode: vertical-lr; 
+    text-orientation:sideways; 
+}
+
+.strip-radio{
+    pointer-events: none;
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    margin: 0;
+}
+
+.strip-li li{
+    display: block;
+    width: fit-content;
 }
 
 
@@ -33,31 +87,33 @@ body{
     display: block;
 
     width: fit-content;
+    height: fit-content;
     
     clip-path: var(--clip-outer);
-    background-image: linear-gradient(to bottom right, rgba(233,128,0,1) 50%, rgba(149,82,0,1) 50%);
+    background-image: linear-gradient(to bottom right, var(--highlight-color) 50%, var(--highlight-color-dark) 50%);
 }
-.poly-parallelogram.wrapper::after{
+.poly-parallelogram.wrapper::before{
     content: "";
     position: absolute;
     inset: 0;
     z-index: -2;
     
     clip-path: var(--clip-inner);
-    background-color: rgb(212, 212, 212);
+    background-color: var(--btn-neutral-color);
 }
-.poly-parallelogram.wrapper:hover::after{
-    background-color: rgb(233, 233, 233);
+.poly-parallelogram.wrapper:hover::before{
+    background-color: var(--btn-hover-color);
 }
-.poly-parallelogram:has(input[type='radio']:checked)::after{
-    background-color: rgb(255, 255, 255);
+.poly-parallelogram:has(input[type='radio']:checked)::before{
+    background-color: var(--btn-selected-color);
 }
 .poly-parallelogram.wrapper:active{
     color:rgb(0, 140, 233);
-    background-image: linear-gradient(to top left, rgba(233,128,0,1) 50%, rgba(149,82,0,1) 50%);
+    background-image: linear-gradient(to top left, var(--highlight-color) 50%, var(--highlight-color-dark) 50%);
 }
-.poly-parallelogram.wrapper:active::after{
-    left: 1px;
+.poly-parallelogram.wrapper:active::before{
+    left: 1.5px;
+    background-color: var(--btn-active-color);
 }
 
 /*
@@ -78,7 +134,7 @@ body{
     z-index: -1;
 
     clip-path: var(--clip);
-    background-image: linear-gradient(to bottom right, rgba(233,128,0,1) 50%, rgba(149,82,0,1) 50%);
+    background-image: linear-gradient(to bottom right, var(--highlight-color) 50%, var(--highlight-color-dark) 50%);
 }
 .poly-parallelogram.decorator:hover::after{
     content: "";
@@ -102,7 +158,7 @@ body{
 }
 .poly-parallelogram.decorator.vertical::before{
     content: "";
-    background-image: linear-gradient(to top left, rgba(233,128,0,1) 50%, rgba(149,82,0,1) 50%);
+    background-image: linear-gradient(to top left, var(--highlight-color) 50%, var(--highlight-color-dark) 50%);
 }
 
 /*
@@ -144,6 +200,7 @@ body{
 }
 .tab:active{
     color:rgb(0, 140, 233);
+    background-color: var(--btn-active-color);
 }
 
 
@@ -168,7 +225,7 @@ body{
 
     clip-path: var(--clip);
     background-color:firebrick;
-    background-image: linear-gradient(-90deg, rgba(149,82,0,1) var(--corner-width), rgba(233,128,0,1) var(--corner-width));
+    background-image: linear-gradient(-90deg, var(--highlight-color-dark) var(--corner-width), var(--highlight-color) var(--corner-width));
 }
 .tab.poly::after{/* inside color */
     content: "";
@@ -177,13 +234,17 @@ body{
 
     inset: 0;
     clip-path: var(--clip-inner);
-    background-color: rgb(212, 212, 212);
+    background-color: var(--btn-neutral-color);
 }
-.tab.poly:hover:after{
-    background-color: rgb(233, 233, 233);
+.tab.poly:hover::after{
+    background-color: var(--btn-hover-color);
 }
 .tab.poly:has(input[type='radio']:checked)::after{
-    background-color: rgb(255, 255, 255);
+    background-color: var(--main-color);
+}
+.tab.poly:active::after{
+    color:rgb(0, 140, 233);
+    background-color: var(--btn-active-color);
 }
 
 .tab.poly.clip-bottom{
@@ -216,8 +277,8 @@ body{
     top: -3px;
 }
 .size-sections section{
-    width:  100%;
-    height: 100%;
+    width:  calc(100% - 10px);
+    height: calc(100% - 10px);
 }
 
 .main-section{
@@ -229,19 +290,18 @@ body{
 }
 
 .subsection-border{
-    background-color: white;
+    background-color: var(--main-color);
 }
 .subsection-border::before{
-    --solid-x: 300px;
-    --solid-y: 50px;
-    --border-color: rgb(233, 128, 0);
+    --solid-x: 350px;
+    --solid-y: 250px;
     --border-style: outset;
     --border-width: 3px;
 
     content: "";
     position: absolute;
     inset: 0;
-    border: var(--border-width) var(--border-color) var(--border-style);
+    border: var(--border-width) var(--highlight-color) var(--border-style);
 
     clip-path: border-box 
         polygon(0 0, 0 100%, var(--border-width) var(--solid-y), var(--border-width) var(--border-width),
@@ -250,33 +310,11 @@ body{
         calc(100% - var(--solid-x)) calc(100% - var(--border-width)), 0 100%, 100% 100%, 100% 0);
 }
 
-
-/*
- *
- *      Style
- *
- */
-.vertical-text-right{
-    writing-mode: vertical-lr; 
-    text-orientation:sideways; 
-    transform: rotate(180deg);
-}
-.vertical-text-left{
-    writing-mode: vertical-lr; 
-    text-orientation:sideways; 
-}
-
-
-.strip-radio{
-    pointer-events: none;
-    display: inline-block;
-    position: absolute;
-    width: 0;
-    margin: 0;
-}
-
-
-.strip-li li{
-    display: block;
-    width: fit-content;
+.content-body{
+    overflow: auto;
+    padding: 5px;
+    background-color: var(--body-color);
+    background-image: var(--body-gradient);
+    
+    box-shadow: var(--body-color) 0 0 3px 3px;
 }

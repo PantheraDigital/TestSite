@@ -7,8 +7,38 @@
         
         <link rel="stylesheet" href="Styles/style.css" />
         <link rel="stylesheet" href="Styles/icons.css" />
+        <link rel="stylesheet" href="Styles/backgroundStyle.css" />
+        <link rel="stylesheet" href="Styles/sectionContent.css" />
     </head>
 <body>
+
+    <template id="project-element-template"><li class="project-li remove-marker">
+            <div class="project-container">
+                <img class="project-img" src="Pics/PythonCertificate.webp" alt="" loading="lazy">
+                <h4></h4><!--title-->
+                <!--Short description body-->
+            </div>
+            <details class="project-details">
+                <summary class="project-summary remove-marker toggle-icon" data-neutral-icon="right-angles" data-active-icon="down-angles"><i class="icon"></i></summary>
+                <!--Details body-->
+            </details>
+        </li></template>
+
+    <span id="background" aria-hidden="true">
+        <svg width='100%' height='100%' xmlns="http://www.w3.org/2000/svg" style="position: absolute;">
+            <defs>
+                <pattern id="myPattern" patternUnits='userSpaceOnUse' width='69.141' height='40' patternTransform='scale(2) rotate(0)'>
+                    <mask id="myMask">
+                        <path fill="white" stroke-width='1' stroke='black'
+                            d='M69.212 40H46.118L34.57 20 46.118 0h23.094l11.547 20zM57.665 60H34.57L23.023 40 34.57 20h23.095l11.547 20zm0-40H34.57L23.023 0 34.57-20h23.095L69.212 0zM34.57 60H11.476L-.07 40l11.547-20h23.095l11.547 20zm0-40H11.476L-.07 0l11.547-20h23.095L46.118 0zM23.023 40H-.07l-11.547-20L-.07 0h23.094L34.57 20z'/>
+                    </mask>
+                    <rect x="0" y="0" width="100%" height="100%" mask="url(#myMask)" />
+                </pattern>
+            </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#myPattern)" />
+        </svg>
+    </span>
+
 
     <div style="width: 100%; height: 100%; text-align: center; display: flex; align-items: center; justify-content: center;">
         
@@ -41,8 +71,15 @@
                         <li style="display: inline-block;"><label class="tab poly"><span>Certifications</span><input type="radio" name="selector" value="3" class="strip-radio"></label></li>
                     </ul>
                     <div name="section-group" data-selector-group="2" class="overlap-sections size-sections subsection-border">
-                        <section data-value="1" style="background-color: rgba(100, 148, 237, 0.15); overflow: auto;"><!--About-->
+                        <section data-value="1" class="content-body"><!--About-->
                             <h3>From playing games to making games.</h3>
+                            <span class="logo-wrapper">
+                                <img src="Pics/LogoImg.webp" alt="logo" class="logo-img">
+                            
+                                <span class="logo-shape-wrapper">
+                                    <div class="logo-shape"></div>    
+                                </span>
+                            </span>
                             <p>
                                 My passion for creation and games has led me to become a programmer. 
                                 Programming provides challenges I enjoy overcoming and a way for me to create new things. 
@@ -61,7 +98,7 @@
                                 I have also recently (2023) picked up HTML, CSS, and JavaScript to begin learning web development which has allowed me to create this page myself allong with other web projects found in my github repos.<br><br>
                             </p>
                         </section>
-                        <section data-value="2" style="background-color: rgba(100, 148, 237, 0.15); overflow: auto;"><!--Links-->
+                        <section data-value="2" class="content-body"><!--Links-->
                             <p>
                                 Contact me here:
                                 <ul><li>
@@ -89,10 +126,10 @@
                                 </li></ul>
                             </p>
                         </section>
-                        <section data-value="3" style="background-color: rgba(100, 148, 237, 0.15); overflow: auto;"><!--Certs-->
-                            <div style="display: flex; gap: 20px; flex-direction: column;">
-                                <div style="background-color: rgba(0, 0, 0, 0.04); padding: 10px; display: flex; flex-direction: row-reverse; justify-content: space-between;">
-                                    <img class="" src="Pics/PythonCertificate.webp" alt="" loading="lazy" style="align-self: flex-start; max-width: 400px; width: 50%; min-width: 244px;" >
+                        <section data-value="3" class="content-body"><!--Certs-->
+                            <ul class="cert-list">
+                                <li class="cert-container remove-marker">
+                                    <img class="cert-img" src="Pics/PythonCertificate.webp" alt="" loading="lazy">
                                     <div class="">
                                         <h4 class="">PCEP - Entry-Level Python Programming</h4><!--title-->
                                         <p class="">
@@ -100,10 +137,10 @@
                                             <br><a href="https://pythoninstitute.org/pcep">https://pythoninstitute.org/pcep</a>
                                         </p>
                                     </div>
-                                </div>
+                                </li>
 
-                                <div style="background-color: rgba(0, 0, 0, 0.04); padding: 10px; display: flex; flex-direction: row-reverse; justify-content: space-between;">
-                                    <img class="" src="Pics/AKLRDi9.webp" alt="" loading="lazy" style="align-self: flex-start; display: inline-block; max-width: 400px; width: 50%; min-width: 244px; height: auto;" >
+                                <li class="cert-container remove-marker">
+                                    <img class="cert-img" src="Pics/AKLRDi9.webp" alt="" loading="lazy">
                                     <div class="">
                                         <h4 class="">Foundational C# w/ Microsoft Certification</h4><!--title-->
                                         <p class="">
@@ -113,10 +150,10 @@
                                             <br><a href="https://learn.microsoft.com/en-us/training/paths/get-started-c-sharp-part-1/">https://learn.microsoft.com/en-us/training/paths/get-started-c-sharp-part-1/</a>
                                         </p>
                                     </div>
-                                </div>
+                                </li>
 
-                                <div style="background-color: rgba(0, 0, 0, 0.04); padding: 10px; display: flex; flex-direction: row-reverse; justify-content: space-between;">    
-                                    <img class="" src="Pics/UGiGsrA.webp" alt="" loading="lazy" style="align-self: flex-start; max-width: 400px; width: 50%; min-width: 244px;" >
+                                <li class="cert-container remove-marker">    
+                                    <img class="cert-img" src="Pics/UGiGsrA.webp" alt="" loading="lazy">
                                     <div class="">
                                         <h4 class="">JavaScript Algorithms and Data Structures Certification</h4><!--title-->
                                         <p class="">
@@ -124,8 +161,8 @@
                                             <br><a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/">https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/</a>
                                         </p>
                                     </div>
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                         </section>
                     </div>
                 </section>
@@ -137,16 +174,28 @@
                         <li style="display: inline-block;"><label class="tab poly"><span>Other</span><input type="radio" name="selector" value="3" class="strip-radio"></label></li>
                     </ul>
                     <div name="section-group" data-selector-group="3" class="overlap-sections size-sections subsection-border">
-                        <section data-value="1" style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
-                        <section data-value="2" style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
-                        <section data-value="3" style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
+                        <section data-value="1" class="content-body">
+                            <ul class="project-list" data-project-list-type="games">
+                                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                            </ul>
+                        </section>
+                        <section data-value="2" class="content-body">
+                            <ul class="project-list" data-project-list-type="tools">
+                                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                            </ul>
+                        </section>
+                        <section data-value="3" class="content-body">
+                            <ul class="project-list" data-project-list-type="other">
+                                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                            </ul>
+                        </section>
                     </div>
                 </section>
 
                 <section data-value="3" class="main-section"><!--Posts-->
                     <div style=" padding: 0px 10px; margin: 0; height: 29px;"></div>
                     <div class=" size-sections subsection-border" style="position: relative;">
-                        <section style="background-color: rgba(100, 148, 237, 0.15);">Coming Soon</section>
+                        <section class="content-body">Coming Soon</section>
                     </div>
                 </section>
 
@@ -157,6 +206,7 @@
     </div>
 
     
-    <script src="script.js"></script>
+    <script src="Scripts/baseScript.js"></script>
+    <script src="Scripts/docLoadScript.js"></script>
 </body>
 </html>
