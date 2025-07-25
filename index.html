@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Golden Ratio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Logo/style.css" />
+    <style>
+        :root{
+            --border-thickness: 50px;
+            --border-gap: 5px;
+            --prime-color: #e3e4ec;
+            --highlight-color: #676C7B;
+        }
+        @media screen and (orientation: portrait) and (max-aspect-ratio: 9/18)/*(resolution: 100dpi)*/{
+            :root{
+                --border-thickness: 100px;
+            }
+        }
+
+        html, body{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            background-color: #9BA2B8;
+        }
+
+        .golden-ratio{
+            --v-gap: 14.06%;
+            --h-gap: 6.25%;
+            display: grid;
+            grid-template-columns: [left] var(--v-gap) [content] auto [right] var(--v-gap);
+            grid-template-rows: [top] max(70px ,var(--h-gap)) [content] auto [bottom] max(70px ,var(--h-gap));
+
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            position: relative;
+        }
+
+        .triangle{
+            --border-w: 5px;
+            position: relative;
+            background-color: transparent; 
+            width:0; 
+            height:0; 
+            top: 5px;
+            left: 5px;
+            border-top: calc(var(--border-thickness) - calc(var(--border-w) * 2)) solid red; 
+            border-right: calc(var(--border-thickness) - calc(var(--border-w) * 2)) solid transparent;
+        }
+
+
+        .border-block{
+            width: var(--border-thickness);
+            height: var(--border-thickness);
+        }
+
+
+
+        .scroll-container{
+            overflow: hidden; 
+            white-space: nowrap;
+        }
+        .scroll-content{
+            position: relative
+        }
+
+        .scrolling-list{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: fit-content;
+        }
+        .scrolling-list li{
+            position: relative;
+            display: inline-block;
+        }
+
+
+
+        .tab{
+            --main-color: cyan;
+
+            font-family: monospace;
+            font-size: large;
+            position: relative;
+            background-color: rgba(0, 255, 255, 0.05);
+            color:azure;
+            text-shadow: 1px 1px black;
+            padding: 5px;
+            display: inline-block;
+            margin-right: 5px;
+            overflow: hidden;
+            z-index: 0;
+            width: 9ch;
+            border: 1px solid transparent;
+        }
+        .tab::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            background-color: var(--main-color);
+            height: 3px;
+            left: 0;
+            bottom: 0;
+            box-shadow: 0 0 15px 2px var(--main-color);
+            z-index: -1;
+        }
+        .tab:hover{
+            border-left: 1px solid var(--main-color);
+            border-right: 1px solid var(--main-color);
+        }
+
+        .tab:has(input[type='radio']:checked){
+            border-left: 1px solid var(--main-color);
+            border-right: 1px solid var(--main-color);
+        }
+        .tab:has(input[type='radio']:checked)::after{
+            box-shadow: 0 0 20px 10px var(--main-color);
+        }
+
+
+
+        .subsection-border::before{
+            --solid-x: 350px;
+            --solid-y: 350px;
+            --border-style: solid;
+            --border-width: 3px;
+            --highlight-color: cyan;/*#9ba2b8;*/
+
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: var(--border-width) var(--highlight-color) var(--border-style);
+
+            clip-path: border-box 
+                polygon(0 0, 0 100%, var(--border-width) var(--solid-y), var(--border-width) var(--border-width),
+                var(--solid-x) var(--border-width), 100% 0, 
+                calc(100% - var(--border-width)) calc(100% - var(--solid-y)), calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+                calc(100% - var(--solid-x)) calc(100% - var(--border-width)), 0 100%, 100% 100%, 100% 0);
+        }
+
+        .vertical-text-right{
+            writing-mode: vertical-lr; 
+            text-orientation:sideways; 
+            transform: rotate(180deg);
+        }
+        .vertical-text-left{
+            writing-mode: vertical-lr; 
+            text-orientation:sideways; 
+        }
+
+
+        .corner{
+            height: 2rem; 
+            width: 2rem; 
+            background-color: cyan;
+            background-image: linear-gradient(to top left,magenta 0%, rgba(255, 255, 255, 0) 85%);
+        }
+        .corner-inner{
+            height: inherit; 
+            width: inherit; 
+            box-sizing: border-box; 
+            background-color: var(--prime-color);
+            border: 3px transparent solid; 
+            background-clip: content-box;
+        }
+
+
+        .horizontal-list li{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div name="background" style="position: fixed; width: 61.81%; height: 100%; box-shadow: 0 0 20px 5px black; border-right: black solid 1px;">
+        <div class="dither" style="width: 100%; height: 100%;">
+            <div class="source" style="position: absolute; inset: 0;"></div>
+            <div class="bayer" style="position: absolute; inset: 0;"></div>
+        </div>
+    </div>
+    <div name="main-content" class="golden-ratio">
+        
+        <div style="position: relative; grid-column: content; grid-row: content;">
+            <!--CENTER-->
+            <div name="section-group" data-selector-group="main-group" class="subsection-border" style="position: absolute; inset: 0; padding: 10px;">
+                <section data-value="1" style=" background-color: #e3e4ece7; box-shadow: #e3e4ece7 0 0 3px 3px; width: 100%; height: 100%; overflow: auto; backdrop-filter: blur(4px) hue-rotate(180deg); position: relative; top: 0;">
+
+                    <div style="pointer-events: none; z-index: -1; position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <span class="logo-wrapper" style="opacity: 0.5;">
+                        <img src="Logo/LogoImg.webp" alt="logo" class="logo-img">
+                        <span class="logo-shape-wrapper">
+                            <div class="logo-shape"></div>    
+                        </span>
+                    </span>
+                    </div>
+                    
+
+                    <div style="display: flex; justify-content: space-between; height: 100%; max-width: 1150px; margin: 0 auto;">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div style="background-color:#e3e4ec; width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
+                                links<hr>
+                                Github<br>Itch.io<br>Codepen<br><br>
+                                Stores<hr>Godot Asset Library<br>Fab<br>Unity Asset Store
+                            </div>     
+                            <div style="background-color:#e3e4ec; width: 400px; height: 255px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
+                                Certification Collection<hr>
+                            </div>                    
+                        </div>   
+                        <div style="background-color:#e3e4ec; width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
+                            Featured Projects<hr>
+                        </div>                    
+                    </div>
+
+                </section>
+                <section data-value="2" style=" background-color: #e3e4ece7; box-shadow: #e3e4ece7 0 0 3px 3px; width: 100%; height: 100%; backdrop-filter: blur(4px) hue-rotate(180deg); position: relative; top: 0;">
+                    
+                    <!--div style="position: absolute; width: 100%; top: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+                        
+                    <ul name="selector-group" class="strip-li base-font horizontal-list" data-selector-group="tab-group" style="margin: 0; padding: 0; position: absolute; bottom: -3px; left: 0;">
+                        <li>
+                            <label class="tab" style="margin-right: var(--border-gap);">
+                                <span>Info</span><input type="radio" name="tab-group-selector" value="1" class="strip-radio" checked>
+                            </label>
+                        </li><li>
+                            <label class="tab" style="margin-right: var(--border-gap);">
+                                <span>Projects</span><input type="radio" name="tab-group-selector" value="2" class="strip-radio">
+                            </label>
+                        </li><li>
+                            <label class="tab" style="margin-right: var(--border-gap);">
+                                <span>Posts</span><input type="radio" name="tab-group-selector" value="3" class="strip-radio">
+                            </label></li>
+                    </ul>
+
+                    </div-->
+                    <div style="width: 100%; height: 100%; overflow:auto;">
+                        <div style="position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <span class="scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
+                                <span class="scroll-content base-font" style="color:orange; text-shadow: black 1px 1px; display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
+                                    <span>///////////////////////////////////////</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>IN DEVELOPMENT</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>///////////////////////////////////////</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>IN DEVELOPMENT</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>///////////////////////////////////////</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>IN DEVELOPMENT</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>///////////////////////////////////////</span><span 
+                                    style="display: inline-block; width: 5ch;"></span><span>IN DEVELOPMENT</span><span 
+                                    style="display: inline-block; width: 5ch;"></span></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+            <!--TOP-->
+
+            <!--BOTTOM-->
+            <div style="position: absolute; width: 100%; bottom: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+                
+                <div class="poly-clip apply-clip-outer" data-clip-sides="left" 
+                    style="--corner-width: 50px; position: absolute; right: 0; width: 350px; height: 2rem; background-color: cyan; background-image: linear-gradient(3deg,magenta 10%, rgba(255, 255, 255, 0) 70%);">
+                <div class="apply-clip-inner" style="vertical-align: middle; position: absolute; inset: 0;  background-color: var(--prime-color);">
+                    
+                    <span class="scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
+                        <span class="scroll-content base-font" style="display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
+                            <span>01101000 01100101 01101100 01101100 01101111</span><span style="display: inline-block; width: 5ch;"></span><span>01110111 01101111 01110010 01101100 01100100</span><span style="display: inline-block; width: 5ch;"></span></span>
+                    </span>
+                    
+                </div>                    
+                </div>
+                
+            </div>
+            <!--LEFT-->
+            <div style="position: absolute; height:100%; left: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+                
+            <ul name="selector-group" data-selector-group="main-group" class="poly-button-wrapper strip-li base-font" style="margin: 0; float: right;">
+                <li><div class="poly-parallelogram wrapper vertical">
+                    <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 9em; text-align: center;">
+                        <span>Info</span><input type="radio" name="main-group-selector" value="1" class="strip-radio" checked>
+                    </label>
+                </div></li>
+                <li><div class="poly-parallelogram wrapper vertical">
+                    <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 9em; text-align: center;">
+                        <span>Posts</span><input type="radio" name="main-group-selector" value="2" class="strip-radio">
+                    </label>
+                </div></li>
+            </ul>
+            
+            </div>
+            <!--RIGHT-->
+            <div style="position: absolute; height:100%; right: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+                
+                <div class="poly-clip apply-clip-outer" data-clip-sides="top" 
+                    style="--corner-width: 50px; position: absolute; bottom: 0; height: 350px; width: 2rem; background-color: cyan; background-image: linear-gradient(267deg,magenta 10%, rgba(255, 255, 255, 0) 70%);">
+                <div class="apply-clip-inner" style="vertical-align: middle; position: absolute; inset: 0;  background-color: var(--prime-color);">
+                    
+                    <span class="vertical-text-right base-font" style="padding-top: 10px; line-height: 2rem; vertical-align: middle; display: inline-block; position: absolute; bottom: 0; white-space: nowrap;">
+                        Group/Tab/ElementID
+                    </span>
+                    
+                </div>                    
+                </div>
+
+            </div>
+            <!--CORNER-->
+            <div style="position: absolute; right: calc((var(--border-thickness) + var(--border-gap)) * -1); bottom: calc((var(--border-thickness) + var(--border-gap)) * -1);  background-color: transparent;" class="border-block">
+
+                <div class="corner">
+                    <div class="corner-inner"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <svg style="display: none;">
+        <filter id="discrete" color-interpolation-filters="sRGB">
+            <feComponentTransfer>
+                <feFuncR type="discrete" tableValues="0 1"></feFuncR>
+                <feFuncG type="discrete" tableValues="0 1"></feFuncG>
+                <feFuncB type="discrete" tableValues="0 1"></feFuncB>
+            </feComponentTransfer>
+        </filter>
+        <filter id="gamma" color-interpolation-filters="sRGB">
+            <feComponentTransfer>
+                <feFuncR type="gamma" exponent="1"></feFuncR>
+                <feFuncG type="gamma" exponent="1"></feFuncG>
+                <feFuncB type="gamma" exponent="1"></feFuncB>
+            </feComponentTransfer>
+        </filter>
+    </svg>
+
+    <script>   
+    // scroll text
+    function enableScroll(scrollContainer, step = -0.1, updateFrequency = 0){
+        let scrollContent = scrollContainer.querySelector(".scroll-content");
+        
+        function scroll(){
+            if(step < 0){
+                scrollContent.style.left = (parseFloat(window.getComputedStyle(scrollContent).left) + step).toString() + "px";
+                if(scrollContent.firstElementChild.getBoundingClientRect().right < scrollContainer.getBoundingClientRect().left){
+                    scrollContent.appendChild(scrollContent.firstElementChild);
+                    scrollContent.style.left = "";// resets pos to start
+                }
+            }else{
+                scrollContent.style.right = (parseFloat(window.getComputedStyle(scrollContent).right) - step).toString() + "px";
+                if(scrollContent.lastElementChild.getBoundingClientRect().left > scrollContainer.getBoundingClientRect().right){
+                    scrollContent.prepend(scrollContent.lastElementChild);
+                    scrollContent.style.right = (scrollContent.offsetWidth - scrollContainer.offsetWidth).toString() + "px";
+                }
+            }
+        }
+
+        if(scrollContent && scrollContainer){
+            let stepOverride = scrollContainer.getAttribute("data-scroll-step");
+            if(stepOverride){ step = parseFloat(stepOverride); }
+            let updateOverride = scrollContainer.getAttribute("data-scroll-update");
+            if(updateOverride){ updateFrequency = parseFloat(updateOverride); }
+
+            if(step > 0){
+                scrollContent.style.right = (scrollContent.offsetWidth - scrollContainer.offsetWidth).toString() + "px";
+            }
+            setInterval(scroll, updateFrequency);
+        }
+    }
+
+    let scrolls = document.querySelectorAll(".scroll-container");
+    for(const scroll of scrolls){
+        enableScroll(scroll);
+    }
+
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
