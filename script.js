@@ -380,3 +380,17 @@ function UpdateSectionGroup(sectionGroup) {
 		}
 	}
 })();
+
+(function () {
+	let button = document.getElementById("QR-button");
+	let overlay = document.getElementById("QR-overlay");
+	button.addEventListener("click", function(){
+		if (button.classList.contains("alt")){
+			button.classList.remove("alt");
+			overlay.style.display = "none";
+		}else{
+			button.classList.add("alt");
+			overlay.style.display = "flex";
+		}
+	});
+})();

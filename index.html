@@ -3,6 +3,7 @@
 <head>
     <title>Golden Ratio</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="icons.css" />
     <link rel="stylesheet" href="Logo/style.css" />
     <style>
         :root{
@@ -21,7 +22,7 @@
             height: 100%;
             width: 100%;
             margin: 0;
-            background-color: #9BA2B8;
+            background-color: #b2c0d3/*#9BA2B8*/;
         }
 
         .golden-ratio{
@@ -35,18 +36,6 @@
             height: 100%;
             background-color: transparent;
             position: relative;
-        }
-
-        .triangle{
-            --border-w: 5px;
-            position: relative;
-            background-color: transparent; 
-            width:0; 
-            height:0; 
-            top: 5px;
-            left: 5px;
-            border-top: calc(var(--border-thickness) - calc(var(--border-w) * 2)) solid red; 
-            border-right: calc(var(--border-thickness) - calc(var(--border-w) * 2)) solid transparent;
         }
 
 
@@ -170,10 +159,34 @@
         .horizontal-list li{
             display: inline-block;
         }
+
+
+        /*@media (max-width: 1190px) {
+            :root{
+                --border-gap: 15px;
+                font-size: xx-large;
+            }
+            .subsection-border::before{
+                --border-width: 9px;
+                --solid-y: 700px;
+            }
+            .poly-parallelogram{
+                --width: 9px;
+            }
+            .poly-clip{
+                --border-width: 9px;
+            }
+        }*/
+
     </style>
 </head>
 <body>
 
+    <div id="QR-overlay" style="position: fixed; background-color: rgba(0, 0, 0, 0.363); width: 100%; height: 100%; z-index: 10;
+                display: none; flex-direction: column; justify-content: center; align-items: center;">
+        <img src="/QR.webp" alt="QR link to https://pantheradigital.github.io/">
+        <span style="color: white; text-shadow: 1px 1px black;">Link to this website</span>
+    </div>
 
     <div name="background" style="position: fixed; width: 61.81%; height: 100%; box-shadow: 0 0 20px 5px black; border-right: black solid 1px;">
         <div class="dither" style="width: 100%; height: 100%;">
@@ -198,19 +211,47 @@
                     </div>
                     
 
-                    <div style="display: flex; justify-content: space-between; height: 100%; max-width: 1150px; margin: 0 auto;">
+                    <div style="display: flex; justify-content: space-between; height: 100%; max-width: 1300px; margin: 0 auto;">
                         <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                             <div style="background-color:#e3e4ec; width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
                                 links<hr>
-                                Github<br>Itch.io<br>Codepen<br><br>
-                                Stores<hr>Godot Asset Library<br>Fab<br>Unity Asset Store
+                                <a href="https://github.com/PantheraDigital">Github</a><br><a href="https://pantheraonline.itch.io/">Itch.io</a><br><a href="https://codepen.io/PantheraDigital">Codepen</a><br><br>
+                                Stores<hr><a href="https://godotengine.org/asset-library/asset?user=Panthera">Godot Asset Library</a><br><a href="https://www.fab.com/sellers/PantheraDigital">Fab</a><br><a href="https://assetstore.unity.com/publishers/57131">Unity Asset Store</a>
                             </div>     
-                            <div style="background-color:#e3e4ec; width: 400px; height: 255px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
+                            <div style="background-color:#e3e4ec; width: 400px; height: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px; overflow: hidden;">
                                 Certification Collection<hr>
+                                <div style="overflow: auto; height: calc(100% - 40px);">
+                                    <div class="hover-to-show-overlay" style="position: relative; width: fit-content; margin-bottom: 5px;">
+                                        <img src="/Certs/PI.webp" style="display: block; width: 200px;" alt="Python Institute Certification: PCEP-30-02. May 6, 2024">
+                                        <div class="hover-overlay">Python Institute Certification: PCEP-30-02. May 6, 2024</div>
+                                    </div>
+                                    <div class="hover-to-show-overlay" style="position: relative; width: fit-content; margin-bottom: 5px;">
+                                        <img src="/Certs/CS.webp" style="display: inline-block; width: 200px;" alt="FreeCodeCamp Certification: Foundational C# with Microsoft. October 29, 2023">
+                                        <div class="hover-overlay">FreeCodeCamp Certification: Foundational C# with Microsoft. October 29, 2023</div>
+                                    </div>
+                                    <div class="hover-to-show-overlay" style="position: relative; width: fit-content; margin-bottom: 5px;">
+                                        <img src="/Certs/JSaDS.webp" style="display: inline-block; width: 200px;" alt="FreeCodeCamp Certification: JavaScript Algorithms and Data Structures. October 24, 2023">
+                                        <div class="hover-overlay">FreeCodeCamp Certification: JavaScript Algorithms and Data Structures. October 24, 2023</div>
+                                    </div>
+                                </div>
                             </div>                    
                         </div>   
-                        <div style="background-color:#e3e4ec; width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
-                            Featured Projects<hr>
+                        <div style="background-color:#e3e4ec; min-width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
+                            <span style="display: inline-block; width:100%; text-align: right;">Featured Projects</span><hr>
+                            <div style="display: flex; flex-direction: column; align-items:center; overflow: auto; height: calc(100% - 40px); width: calc(100% - 20px); padding: 0 10px;">
+                                <div class="featured-project">
+                                    <div><a href="https://github.com/PantheraDigital/PantheraDigital.github.io" target="_blank"><button title="link" style="float: left; width: 22px; height: 22px;" class="link-button"><span class="icon fill open-box-arrow"></span></button></a><i>My forever evolving website</i></div>
+                                    <img src="/ProjectImgs/PantheraDigital_PageScreenshot.webp" style="display: inline-block; width: 350px;" alt="">
+                                </div>
+                                <div class="featured-project alt">
+                                    <div><i style="margin-left: 10px;">Step detection for Godot</i><a href="https://github.com/PantheraDigital/GodotCharacterStep" target="_blank"><button title="link" style="float: left; width: 22px; height: 22px;" class="link-button"><span class="icon fill open-box-arrow"></span></button></a></div>
+                                    <img src="/ProjectImgs/PantheraDigital_GodotCharacterStep.webp" style="display: inline-block; width: 350px;" alt="">
+                                </div>
+                                <div class="featured-project">
+                                    <div><a href="https://pantheradigital.github.io/CharacterSheet/" target="_blank"><button title="link" style="float: left; width: 22px; height: 22px;" class="link-button"><span class="icon fill open-box-arrow"></span></button></a><i>D&D character data sheet editor</i></div>
+                                    <img src="/ProjectImgs/PantheraDigital_CharaterStatSheet.webp" style="display: inline-block; width: 350px;" alt="">
+                                </div>
+                            </div>
                         </div>                    
                     </div>
 
@@ -236,6 +277,16 @@
 
                     </div-->
                     <div style="width: 100%; height: 100%; overflow:auto;">
+
+                        <div style="pointer-events: none; z-index: -1; position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <span class="logo-wrapper" style="opacity: 0.5;">
+                            <img src="Logo/LogoImg.webp" alt="logo" class="logo-img">
+                            <span class="logo-shape-wrapper">
+                                <div class="logo-shape"></div>    
+                            </span>
+                        </span>
+                        </div>
+
                         <div style="position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                             <span class="scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
                                 <span class="scroll-content base-font" style="color:orange; text-shadow: black 1px 1px; display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
@@ -297,7 +348,7 @@
                 <div class="apply-clip-inner" style="vertical-align: middle; position: absolute; inset: 0;  background-color: var(--prime-color);">
                     
                     <span class="vertical-text-right base-font" style="padding-top: 10px; line-height: 2rem; vertical-align: middle; display: inline-block; position: absolute; bottom: 0; white-space: nowrap;">
-                        Group/Tab/ElementID
+                        Panthera / Info /
                     </span>
                     
                 </div>                    
@@ -308,7 +359,10 @@
             <div style="position: absolute; right: calc((var(--border-thickness) + var(--border-gap)) * -1); bottom: calc((var(--border-thickness) + var(--border-gap)) * -1);  background-color: transparent;" class="border-block">
 
                 <div class="corner">
-                    <div class="corner-inner"></div>
+                    <div class="corner-inner">
+                        <button title="Toggle QR" id="QR-button" class="qr-button">X</button>
+                        <img src="/QR.webp" width="100%">
+                    </div>
                 </div>
 
             </div>
