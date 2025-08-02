@@ -1,0 +1,395 @@
+:root {
+    --block-size: 50px;
+    --global-border-gap: 5px;
+    --global-border-width: 3px;
+    --prime-color: #e3e4ec;
+    --highlight-color: #676C7B;
+}
+
+
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #b2c0d3
+        /*#9BA2B8*/
+    ;
+}
+
+/*
+ *      Style
+ */
+.vertical-text-right {
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+    transform: rotate(180deg);
+}
+
+.vertical-text-left {
+    writing-mode: vertical-lr;
+    text-orientation: sideways;
+}
+
+.horizontal-list li {
+    display: inline-block;
+}
+
+.strip-list {
+    list-style: none;
+}
+
+.strip-radio {
+    pointer-events: none;
+    display: inline-block;
+    position: absolute;
+    width: 0;
+    margin: 0;
+}
+
+.base-font {
+    font-family: 'Lucida Console', monospace;
+}
+
+
+/*
+ *      Main Block
+ */
+.main-block::before {
+    --solid-x: 350px;
+    --solid-y: 350px;
+    --border-style: solid;
+    --highlight-color: cyan;
+    /*#9ba2b8;*/
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: var(--global-border-width) var(--highlight-color) var(--border-style);
+
+    clip-path: border-box polygon(0 0, 0 100%, var(--global-border-width) var(--solid-y), var(--global-border-width) var(--global-border-width),
+            var(--solid-x) var(--global-border-width), 100% 0,
+            calc(100% - var(--global-border-width)) calc(100% - var(--solid-y)), calc(100% - var(--global-border-width)) calc(100% - var(--global-border-width)),
+            calc(100% - var(--solid-x)) calc(100% - var(--global-border-width)), 0 100%, 100% 100%, 100% 0);
+}
+.main-content{
+    background-color: #e3e4ece7; 
+    box-shadow: #e3e4ece7 0 0 3px 3px; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    backdrop-filter: blur(4px) hue-rotate(180deg); 
+    position: relative; 
+    top: 0;
+}
+
+/*
+ *      Inner Content
+ */
+.inner-content-frame{
+    background-color:#e3e4ec; 
+    width: 400px;
+    border: 3px groove lightgrey; 
+    padding: 3px;
+}
+
+/*
+ *      Polygon Buttons
+ */
+.poly-parallelogram {
+    --border-width: var(--global-border-width);
+    --clip: polygon(25% 0, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 75% 100%, 100% 0%);
+    --clip-outer: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    --clip-inner: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+
+    --highlight-color: cyan;
+    /*#9BA2B8;*/
+    --highlight-color-dark: cyan;
+    /*#676C7B;*/
+    --btn-neutral-color: var(--prime-color);
+    --btn-hover-color: white;
+    --btn-selected-color: #b2b5cf;
+    --btn-active-color: #676C7B;
+}
+
+.poly-parallelogram.wrapper {
+    position: relative;
+    display: block;
+
+    width: fit-content;
+    height: fit-content;
+
+    clip-path: var(--clip-outer);
+    /*background-image: linear-gradient(to bottom right, var(--highlight-color) 50%, var(--highlight-color-dark) 50%);*/
+
+    background-color: cyan;
+    background-image: linear-gradient(285deg, magenta 30%, rgba(255, 255, 255, 0) 60%);
+}
+
+.poly-parallelogram.wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    clip-path: var(--clip-inner);
+    background-color: var(--btn-neutral-color);
+}
+
+.poly-parallelogram.wrapper:hover::before {
+    background-color: var(--btn-hover-color);
+}
+
+.poly-parallelogram:has(input[type='radio']:checked)::before {
+    background-color: #9BA2B8;
+}
+
+.poly-parallelogram:has(input[type='radio']:checked).wrapper {
+    background-image: linear-gradient(100deg, magenta 20%, rgba(255, 255, 255, 0) 80%);
+}
+
+.poly-parallelogram.wrapper:active::before {
+    background-color: var(--btn-active-color);
+}
+
+/* Polygon Buttons Container */
+.poly-button-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    /*padding: 26px 7px 0 0;height of header - border thickness*/
+    /*section padding - border thickness*/
+}
+
+.poly-button-container li:nth-child(n+2) {
+    /*margin-top: -30.74px;*/
+    margin-top: -27px;
+}
+
+/*
+ *      Poly Clip
+ */
+.poly-clip {
+    --border-width: var(--global-border-width);
+    --corner-width: 35px;
+
+    --clip: polygon(25% 0, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 75% 100%, 100% 0%);
+    --clip-outer: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    --clip-inner: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+
+.apply-clip {
+    clip-path: var(--clip);
+}
+
+.apply-clip-inner {
+    clip-path: var(--clip-inner);
+}
+
+.apply-clip-outer {
+    clip-path: var(--clip-outer);
+}
+
+.apply-clip-border::before {
+    --clip-border-color: firebrick;
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    clip-path: var(--clip);
+    background-color: var(--clip-border-color);
+}
+
+/*
+ *      Auto Scroll
+ */
+.auto-scroll-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.auto-scroll-container .auto-scroll-content {
+    position: relative
+}
+
+/*
+ *      Hover display
+ */
+.hover-to-show-overlay:hover>.hover-overlay,
+.hover-to-show-overlay:active>.hover-overlay {
+    display: block;
+}
+
+.hover-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.486);
+    color: aliceblue;
+    text-shadow: 1px 1px 1px black;
+    padding: 5px;
+}
+
+/*
+ *      QR
+ */
+.qr-button {
+    cursor: pointer;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    top: 0px;
+    left: 0px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.qr-button.alt {
+    z-index: 11;
+    border: var(--global-border-width) solid red;
+    background-color: rgba(255, 0, 0, 0.233);
+}
+
+.qr-button.alt:hover {
+    background-color: rgba(0, 0, 0, 0.377);
+}
+
+/*
+ *      Dither
+ */
+.dither {
+    filter: url("#discrete");
+}
+
+.dither .source {
+    /*filter: url("#gamma") opacity(0.5);*/
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 1) 1%, rgba(255, 255, 255, 0) 60%),
+        linear-gradient(270deg, #B0C4DE 15%, #b0c4de3b 60%);
+}
+
+.dither .add {
+    filter: opacity(0.498046875);
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.dither .bayer {
+    background: url("/PageImgs/xrwK0bK.png");
+    mix-blend-mode: overlay;
+}
+
+/*
+ *      Featured Project
+ */
+.featured-project {
+    --border-color: lightgrey;
+    --border-style: groove;
+    position: relative;
+    box-sizing: border-box;
+    width: fit-content;
+    text-align: right;
+    padding: 5px;
+    border-right: 3px var(--border-style) var(--border-color);
+    border-bottom: 3px var(--border-style) var(--border-color);
+}
+
+.featured-project.alt {
+    text-align: left;
+    border-top: none;
+    border-right: none;
+    border-bottom: 3px var(--border-style) var(--border-color);
+    border-left: 3px var(--border-style) var(--border-color);
+}
+
+.link-button {
+    border-radius: 0;
+    border-color: slateblue;
+}
+
+/*
+ *      Tabs
+ */
+.tab {
+    --main-color: cyan;
+
+    font-family: monospace;
+    font-size: large;
+    position: relative;
+    background-color: rgba(0, 255, 255, 0.05);
+    color: azure;
+    text-shadow: 1px 1px black;
+    padding: 5px;
+    display: inline-block;
+    margin-right: 5px;
+    overflow: hidden;
+    z-index: 0;
+    width: 9ch;
+    border: 1px solid transparent;
+}
+
+.tab::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background-color: var(--main-color);
+    height: 3px;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 0 15px 2px var(--main-color);
+    z-index: -1;
+}
+
+.tab:hover {
+    border-left: 1px solid var(--main-color);
+    border-right: 1px solid var(--main-color);
+}
+
+.tab:has(input[type='radio']:checked) {
+    border-left: 1px solid var(--main-color);
+    border-right: 1px solid var(--main-color);
+}
+
+.tab:has(input[type='radio']:checked)::after {
+    box-shadow: 0 0 20px 10px var(--main-color);
+}
+
+/*
+ *      Corner Element
+ */
+.corner {
+    height: 2rem;
+    width: 2rem;
+    background-color: cyan;
+    background-image: linear-gradient(to top left, magenta 0%, rgba(255, 255, 255, 0) 85%);
+}
+
+.corner-inner {
+    height: inherit;
+    width: inherit;
+    box-sizing: border-box;
+    background-color: var(--prime-color);
+    border: var(--global-border-width) transparent solid;
+    background-clip: content-box;
+}
+
+
+@media screen and (orientation: portrait) and (max-aspect-ratio: 9/18)
+/*(resolution: 100dpi)*/
+{
+    :root {
+        --global-border-gap: 10px;
+        --global-border-width: 6px;
+        font-size: xx-large;
+    }
+    .inner-content-frame{
+        border-width: 6px;
+    }
+    .poly-button-container li:nth-child(n+2) {
+        margin-top: -50px;
+    }
+}

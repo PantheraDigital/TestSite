@@ -4,7 +4,7 @@
 (function () {
 	const shapes = document.getElementsByClassName("poly-parallelogram");
 	for (const shape of shapes) {
-		const thickness = parseInt(getComputedStyle(shape).getPropertyValue("--width"));
+		const thickness = parseInt(getComputedStyle(shape).getPropertyValue("--border-width"));
 		const isVertical = shape.classList.contains("vertical");
 
 		const rawH = shape.children[0].offsetHeight;
@@ -107,87 +107,6 @@
 	}
 })();
 
-/*
-  calc poly tab shape
-*/
-(function () {
-	const shapes = document.querySelectorAll(".tab1.poly");
-	for (const shape of shapes) {
-		const borderThickness = parseInt(getComputedStyle(shape).getPropertyValue("--border-width"));
-		const cornerWidth = parseInt(getComputedStyle(shape).getPropertyValue("--corner-width"));
-
-		const h = parseInt(shape.offsetHeight);
-		const w = parseInt(shape.offsetWidth);
-
-		const hypotenuse = Math.sqrt((Math.pow(h, 2) + Math.pow(cornerWidth, 2)));
-		const p = (cornerWidth * borderThickness) / h;
-		const r = (hypotenuse * borderThickness) / h;
-
-		if (shape.classList.contains("clip-bottom")) {
-			const innerA = [0, h - borderThickness];
-			const innerB = [w - borderThickness, h - cornerWidth + (p - r)];
-
-			shape.style.setProperty("--clip",
-				`polygon(0 0,
-          0 ${borderThickness}px, 
-          ${w - borderThickness}px ${borderThickness}px, 
-          ${innerB[0]}px ${innerB[1]}px, 
-          ${innerA[0]}px ${innerA[1]}px, 
-          0 100%, 
-          ${w}px ${h - cornerWidth}px,
-          100% 0)`);
-
-			shape.style.setProperty("--clip-outer", `polygon(0 0, 0 100%, ${w}px ${h - cornerWidth}px, 100% 0)`);
-			shape.style.setProperty("--clip-inner",
-				`polygon(0 ${borderThickness}px, ${w - borderThickness}px ${borderThickness}px, ${innerB[0]}px ${innerB[1]}px, ${innerA[0]}px ${innerA[1]}px)`);
-
-		} else if (shape.classList.contains("clip-top")) {
-			const innerA = [0, borderThickness];
-			const innerB = [w - borderThickness, cornerWidth - (p - r)];
-
-			shape.style.setProperty("--clip",
-				`polygon(0 0,
-          ${innerA[0]}px ${innerA[1]}px,
-          ${innerB[0]}px ${innerB[1]}px,
-          ${w - borderThickness}px ${h - borderThickness}px,
-          0 ${h - borderThickness}px,
-          0 100%,
-          100% 100%,
-          100% ${cornerWidth}px)`);
-
-			shape.style.setProperty("--clip-outer", `polygon(0 0, ${w}px ${cornerWidth}px, 100% 100%, 0 100%)`);
-			shape.style.setProperty("--clip-inner",
-				`polygon(${innerA[0]}px ${innerA[1]}px, ${innerB[0]}px ${innerB[1]}px, ${w - borderThickness}px ${h - borderThickness}px, 0 ${h - borderThickness}px)`);
-
-		} else {
-			//const innerA = [(w) - borderThickness, h];
-			const innerB = [(w - cornerWidth) + (p - r), borderThickness];
-
-			shape.style.setProperty("--clip",
-				/*`polygon(0 0, 0 100%, 
-				  ${borderThickness}px 100%, 
-				  ${borderThickness}px ${borderThickness}px, 
-				  ${innerB[0]}px ${innerB[1]}px, 
-				  ${innerA[0]}px ${innerA[1]}px, 
-				  100% 100%, 
-				  ${w - cornerWidth}px 0)`);
-			  */
-				`polygon(0 0, 0 100%, 
-          ${borderThickness}px 100%, 
-          ${borderThickness}px ${borderThickness}px, 
-          ${innerB[0]}px ${innerB[1]}px, 
-          100% 100%,
-          100% ${h - borderThickness}px, 
-          ${w - cornerWidth}px 0)`);
-
-			shape.style.setProperty("--clip-outer", `polygon(0 0, 0 100%, 100% 100%, 100% ${h - borderThickness}px, ${w - cornerWidth}px 0)`);
-			shape.style.setProperty("--clip-inner",
-				`polygon(${borderThickness}px 100%, ${borderThickness}px ${borderThickness}px, ${innerB[0]}px ${innerB[1]}px, 100% 100%)`);
-		}
-
-	}
-})();
-
 
 /*
   gather selector groups and section groups
@@ -225,7 +144,6 @@
 	}
 })();
 
-
 function SetUpSelectorInput(sectionGroup, selector) {
 	selector.addEventListener("change", function () {
 		if (selector.checked) {
@@ -249,11 +167,9 @@ function UpdateSectionGroup(sectionGroup) {
 
 
 
-
-
-
-
-
+/*
+  calc poly clip
+*/
 (function () {
 	const shapes = document.getElementsByClassName("poly-clip");
 	for (const shape of shapes) {
@@ -381,6 +297,9 @@ function UpdateSectionGroup(sectionGroup) {
 	}
 })();
 
+/*
+  QR Button
+*/
 (function () {
 	let button = document.getElementById("QR-button");
 	let overlay = document.getElementById("QR-overlay");
@@ -394,3 +313,43 @@ function UpdateSectionGroup(sectionGroup) {
 		}
 	});
 })();
+
+/*
+  auto scrolling text
+*/
+function enableScroll(scrollContainer, step = -0.1, updateFrequency = 0){
+	let scrollContent = scrollContainer.querySelector(".auto-scroll-content");
+	
+	function scroll(){
+		if(step < 0){
+			scrollContent.style.left = (parseFloat(window.getComputedStyle(scrollContent).left) + step).toString() + "px";
+			if(scrollContent.firstElementChild.getBoundingClientRect().right < scrollContainer.getBoundingClientRect().left){
+				scrollContent.appendChild(scrollContent.firstElementChild);
+				scrollContent.style.left = "";// resets pos to start
+			}
+		}else{
+			scrollContent.style.right = (parseFloat(window.getComputedStyle(scrollContent).right) - step).toString() + "px";
+			if(scrollContent.lastElementChild.getBoundingClientRect().left > scrollContainer.getBoundingClientRect().right){
+				scrollContent.prepend(scrollContent.lastElementChild);
+				scrollContent.style.right = (scrollContent.offsetWidth - scrollContainer.offsetWidth).toString() + "px";
+			}
+		}
+	}
+
+	if(scrollContent && scrollContainer){
+		let stepOverride = scrollContainer.getAttribute("data-scroll-step");
+		if(stepOverride){ step = parseFloat(stepOverride); }
+		let updateOverride = scrollContainer.getAttribute("data-scroll-update");
+		if(updateOverride){ updateFrequency = parseFloat(updateOverride); }
+
+		if(step > 0){
+			scrollContent.style.right = (scrollContent.offsetWidth - scrollContainer.offsetWidth).toString() + "px";
+		}
+		setInterval(scroll, updateFrequency);
+	}
+}
+
+let scrolls = document.querySelectorAll(".auto-scroll-container");
+for(const scroll of scrolls){
+	enableScroll(scroll);
+}

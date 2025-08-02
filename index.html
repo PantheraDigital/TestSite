@@ -2,189 +2,16 @@
 <html lang="en">
 <head>
     <title>Golden Ratio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="icons.css" />
+    <link rel="stylesheet" href="/CSS/element.css" />
+    <link rel="stylesheet" href="/CSS/icons.css" />
+    <link rel="stylesheet" href="/CSS/layout.css" />
     <link rel="stylesheet" href="Logo/style.css" />
-    <style>
-        :root{
-            --border-thickness: 50px;
-            --border-gap: 5px;
-            --prime-color: #e3e4ec;
-            --highlight-color: #676C7B;
-        }
-        @media screen and (orientation: portrait) and (max-aspect-ratio: 9/18)/*(resolution: 100dpi)*/{
-            :root{
-                --border-thickness: 100px;
-            }
-        }
-
-        html, body{
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            background-color: #b2c0d3/*#9BA2B8*/;
-        }
-
-        .golden-ratio{
-            --v-gap: 14.06%;
-            --h-gap: 6.25%;
-            display: grid;
-            grid-template-columns: [left] var(--v-gap) [content] auto [right] var(--v-gap);
-            grid-template-rows: [top] max(70px ,var(--h-gap)) [content] auto [bottom] max(70px ,var(--h-gap));
-
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            position: relative;
-        }
-
-
-        .border-block{
-            width: var(--border-thickness);
-            height: var(--border-thickness);
-        }
-
-
-
-        .scroll-container{
-            overflow: hidden; 
-            white-space: nowrap;
-        }
-        .scroll-content{
-            position: relative
-        }
-
-        .scrolling-list{
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: fit-content;
-        }
-        .scrolling-list li{
-            position: relative;
-            display: inline-block;
-        }
-
-
-
-        .tab{
-            --main-color: cyan;
-
-            font-family: monospace;
-            font-size: large;
-            position: relative;
-            background-color: rgba(0, 255, 255, 0.05);
-            color:azure;
-            text-shadow: 1px 1px black;
-            padding: 5px;
-            display: inline-block;
-            margin-right: 5px;
-            overflow: hidden;
-            z-index: 0;
-            width: 9ch;
-            border: 1px solid transparent;
-        }
-        .tab::after{
-            content: "";
-            position: absolute;
-            width: 100%;
-            background-color: var(--main-color);
-            height: 3px;
-            left: 0;
-            bottom: 0;
-            box-shadow: 0 0 15px 2px var(--main-color);
-            z-index: -1;
-        }
-        .tab:hover{
-            border-left: 1px solid var(--main-color);
-            border-right: 1px solid var(--main-color);
-        }
-
-        .tab:has(input[type='radio']:checked){
-            border-left: 1px solid var(--main-color);
-            border-right: 1px solid var(--main-color);
-        }
-        .tab:has(input[type='radio']:checked)::after{
-            box-shadow: 0 0 20px 10px var(--main-color);
-        }
-
-
-
-        .subsection-border::before{
-            --solid-x: 350px;
-            --solid-y: 350px;
-            --border-style: solid;
-            --border-width: 3px;
-            --highlight-color: cyan;/*#9ba2b8;*/
-
-            content: "";
-            position: absolute;
-            inset: 0;
-            border: var(--border-width) var(--highlight-color) var(--border-style);
-
-            clip-path: border-box 
-                polygon(0 0, 0 100%, var(--border-width) var(--solid-y), var(--border-width) var(--border-width),
-                var(--solid-x) var(--border-width), 100% 0, 
-                calc(100% - var(--border-width)) calc(100% - var(--solid-y)), calc(100% - var(--border-width)) calc(100% - var(--border-width)),
-                calc(100% - var(--solid-x)) calc(100% - var(--border-width)), 0 100%, 100% 100%, 100% 0);
-        }
-
-        .vertical-text-right{
-            writing-mode: vertical-lr; 
-            text-orientation:sideways; 
-            transform: rotate(180deg);
-        }
-        .vertical-text-left{
-            writing-mode: vertical-lr; 
-            text-orientation:sideways; 
-        }
-
-
-        .corner{
-            height: 2rem; 
-            width: 2rem; 
-            background-color: cyan;
-            background-image: linear-gradient(to top left,magenta 0%, rgba(255, 255, 255, 0) 85%);
-        }
-        .corner-inner{
-            height: inherit; 
-            width: inherit; 
-            box-sizing: border-box; 
-            background-color: var(--prime-color);
-            border: 3px transparent solid; 
-            background-clip: content-box;
-        }
-
-
-        .horizontal-list li{
-            display: inline-block;
-        }
-
-
-        /*@media (max-width: 1190px) {
-            :root{
-                --border-gap: 15px;
-                font-size: xx-large;
-            }
-            .subsection-border::before{
-                --border-width: 9px;
-                --solid-y: 700px;
-            }
-            .poly-parallelogram{
-                --width: 9px;
-            }
-            .poly-clip{
-                --border-width: 9px;
-            }
-        }*/
-
-    </style>
 </head>
 <body>
 
     <div id="QR-overlay" style="position: fixed; background-color: rgba(0, 0, 0, 0.363); width: 100%; height: 100%; z-index: 10;
                 display: none; flex-direction: column; justify-content: center; align-items: center;">
-        <img src="/QR.webp" alt="QR link to https://pantheradigital.github.io/">
+        <img src="/PageImgs/QR.webp" alt="QR link to https://pantheradigital.github.io/">
         <span style="color: white; text-shadow: 1px 1px black;">Link to this website</span>
     </div>
 
@@ -194,16 +21,17 @@
             <div class="bayer" style="position: absolute; inset: 0;"></div>
         </div>
     </div>
-    <div name="main-content" class="golden-ratio">
+    
+    <div class="golden-ratio-layout">
         
         <div style="position: relative; grid-column: content; grid-row: content;">
             <!--CENTER-->
-            <div name="section-group" data-selector-group="main-group" class="subsection-border" style="position: absolute; inset: 0; padding: 10px;">
-                <section data-value="1" style=" background-color: #e3e4ece7; box-shadow: #e3e4ece7 0 0 3px 3px; width: 100%; height: 100%; overflow: auto; backdrop-filter: blur(4px) hue-rotate(180deg); position: relative; top: 0;">
+            <div name="section-group" data-selector-group="main-group" class="main-block" style="position: absolute; inset: 0; padding: 10px;">
+                <section data-value="1" class="main-content">
 
                     <div style="pointer-events: none; z-index: -1; position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                     <span class="logo-wrapper" style="opacity: 0.5;">
-                        <img src="Logo/LogoImg.webp" alt="logo" class="logo-img">
+                        <img src="Logo/LogoImg.webp" alt="" class="logo-img">
                         <span class="logo-shape-wrapper">
                             <div class="logo-shape"></div>    
                         </span>
@@ -211,32 +39,23 @@
                     </div>
                     
 
-                    <div style="display: flex; justify-content: space-between; height: 100%; max-width: 1300px; margin: 0 auto;">
-                        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                            <div style="background-color:#e3e4ec; width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
-                                links<hr>
+                    <div class="info-page-layout">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; margin-right: var(--global-border-gap); max-width: 400px; min-width: 220px;">
+                            <div class="inner-content-frame" style="width: 100%; margin: 0; box-sizing: border-box;">
+                                Links<hr>
                                 <a href="https://github.com/PantheraDigital">Github</a><br><a href="https://pantheraonline.itch.io/">Itch.io</a><br><a href="https://codepen.io/PantheraDigital">Codepen</a><br><br>
                                 Stores<hr><a href="https://godotengine.org/asset-library/asset?user=Panthera">Godot Asset Library</a><br><a href="https://www.fab.com/sellers/PantheraDigital">Fab</a><br><a href="https://assetstore.unity.com/publishers/57131">Unity Asset Store</a>
                             </div>     
-                            <div style="background-color:#e3e4ec; width: 400px; height: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px; overflow: hidden;">
+                            <div class="inner-content-frame" style="height: 400px; overflow: hidden; width: 100%; margin: 0; box-sizing: border-box;">
                                 Certification Collection<hr>
                                 <div style="overflow: auto; height: calc(100% - 40px);">
-                                    <div class="hover-to-show-overlay" style="position: relative; width: fit-content; margin-bottom: 5px;">
-                                        <img src="/Certs/PI.webp" style="display: block; width: 200px;" alt="Python Institute Certification: PCEP-30-02. May 6, 2024">
-                                        <div class="hover-overlay">Python Institute Certification: PCEP-30-02. May 6, 2024</div>
-                                    </div>
-                                    <div class="hover-to-show-overlay" style="position: relative; width: fit-content; margin-bottom: 5px;">
-                                        <img src="/Certs/CS.webp" style="display: inline-block; width: 200px;" alt="FreeCodeCamp Certification: Foundational C# with Microsoft. October 29, 2023">
-                                        <div class="hover-overlay">FreeCodeCamp Certification: Foundational C# with Microsoft. October 29, 2023</div>
-                                    </div>
-                                    <div class="hover-to-show-overlay" style="position: relative; width: fit-content; margin-bottom: 5px;">
-                                        <img src="/Certs/JSaDS.webp" style="display: inline-block; width: 200px;" alt="FreeCodeCamp Certification: JavaScript Algorithms and Data Structures. October 24, 2023">
-                                        <div class="hover-overlay">FreeCodeCamp Certification: JavaScript Algorithms and Data Structures. October 24, 2023</div>
-                                    </div>
+                                    <img src="/Certs/PI.webp" style="display: block; width: 200px;" alt="Python Institute Certification: PCEP-30-02. May 6, 2024" title="Python Institute Certification: PCEP-30-02. May 6, 2024">
+                                    <img src="/Certs/CS.webp" style="display: inline-block; width: 200px;" alt="FreeCodeCamp Certification: Foundational C# with Microsoft. October 29, 2023" title="FreeCodeCamp Certification: Foundational C# with Microsoft. October 29, 2023">
+                                    <img src="/Certs/JSaDS.webp" style="display: inline-block; width: 200px;" alt="FreeCodeCamp Certification: JavaScript Algorithms and Data Structures. October 24, 2023" title="FreeCodeCamp Certification: JavaScript Algorithms and Data Structures. October 24, 2023">
                                 </div>
                             </div>                    
                         </div>   
-                        <div style="background-color:#e3e4ec; min-width: 400px; border: 3px groove lightgrey; margin: 2.5px; padding: 3px;">
+                        <div class="inner-content-frame" style="min-width: fit-content; max-height: fit-content;">
                             <span style="display: inline-block; width:100%; text-align: right;">Featured Projects</span><hr>
                             <div style="display: flex; flex-direction: column; align-items:center; overflow: auto; height: calc(100% - 40px); width: calc(100% - 20px); padding: 0 10px;">
                                 <div class="featured-project">
@@ -256,26 +75,25 @@
                     </div>
 
                 </section>
-                <section data-value="2" style=" background-color: #e3e4ece7; box-shadow: #e3e4ece7 0 0 3px 3px; width: 100%; height: 100%; backdrop-filter: blur(4px) hue-rotate(180deg); position: relative; top: 0;">
+                <section data-value="2" class="main-content">
                     
-                    <!--div style="position: absolute; width: 100%; top: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
-                        
-                    <ul name="selector-group" class="strip-li base-font horizontal-list" data-selector-group="tab-group" style="margin: 0; padding: 0; position: absolute; bottom: -3px; left: 0;">
-                        <li>
-                            <label class="tab" style="margin-right: var(--border-gap);">
-                                <span>Info</span><input type="radio" name="tab-group-selector" value="1" class="strip-radio" checked>
-                            </label>
-                        </li><li>
-                            <label class="tab" style="margin-right: var(--border-gap);">
-                                <span>Projects</span><input type="radio" name="tab-group-selector" value="2" class="strip-radio">
-                            </label>
-                        </li><li>
-                            <label class="tab" style="margin-right: var(--border-gap);">
-                                <span>Posts</span><input type="radio" name="tab-group-selector" value="3" class="strip-radio">
-                            </label></li>
-                    </ul>
-
+                    <!--div class="surrounding-block top">
+                        <ul name="selector-group" class="base-font horizontal-list" data-selector-group="tab-group" style="margin: 0; padding: 0; position: absolute; bottom: -3px; left: 0;">
+                            <li>
+                                <label class="tab" style="margin-right: var(--global-border-gap);">
+                                    <span>Info</span><input type="radio" name="tab-group-selector" value="1" class="strip-radio" checked>
+                                </label>
+                            </li><li>
+                                <label class="tab" style="margin-right: var(--global-border-gap);">
+                                    <span>Projects</span><input type="radio" name="tab-group-selector" value="2" class="strip-radio">
+                                </label>
+                            </li><li>
+                                <label class="tab" style="margin-right: var(--global-border-gap);">
+                                    <span>Posts</span><input type="radio" name="tab-group-selector" value="3" class="strip-radio">
+                                </label></li>
+                        </ul>
                     </div-->
+
                     <div style="width: 100%; height: 100%; overflow:auto;">
 
                         <div style="pointer-events: none; z-index: -1; position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -288,8 +106,8 @@
                         </div>
 
                         <div style="position: absolute; inset: 0; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <span class="scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
-                                <span class="scroll-content base-font" style="color:orange; text-shadow: black 1px 1px; display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
+                            <span class="auto-scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
+                                <span class="auto-scroll-content base-font" style="color:orange; text-shadow: black 1px 1px; display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
                                     <span>///////////////////////////////////////</span><span 
                                     style="display: inline-block; width: 5ch;"></span><span>IN DEVELOPMENT</span><span 
                                     style="display: inline-block; width: 5ch;"></span><span>///////////////////////////////////////</span><span 
@@ -308,14 +126,14 @@
             <!--TOP-->
 
             <!--BOTTOM-->
-            <div style="position: absolute; width: 100%; bottom: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+            <div class="surrounding-block bottom">
                 
                 <div class="poly-clip apply-clip-outer" data-clip-sides="left" 
                     style="--corner-width: 50px; position: absolute; right: 0; width: 350px; height: 2rem; background-color: cyan; background-image: linear-gradient(3deg,magenta 10%, rgba(255, 255, 255, 0) 70%);">
                 <div class="apply-clip-inner" style="vertical-align: middle; position: absolute; inset: 0;  background-color: var(--prime-color);">
                     
-                    <span class="scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
-                        <span class="scroll-content base-font" style="display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
+                    <span class="auto-scroll-container" data-scroll-step="-1" data-scroll-update="50" style="display: inline-block; width: 100%;">
+                        <span class="auto-scroll-content base-font" style="display: inline-block; height: 2rem; line-height: 2rem; vertical-align: middle;">
                             <span>01101000 01100101 01101100 01101100 01101111</span><span style="display: inline-block; width: 5ch;"></span><span>01110111 01101111 01110010 01101100 01100100</span><span style="display: inline-block; width: 5ch;"></span></span>
                     </span>
                     
@@ -324,15 +142,15 @@
                 
             </div>
             <!--LEFT-->
-            <div style="position: absolute; height:100%; left: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+            <div class="surrounding-block left">
                 
-            <ul name="selector-group" data-selector-group="main-group" class="poly-button-wrapper strip-li base-font" style="margin: 0; float: right;">
-                <li><div class="poly-parallelogram wrapper vertical">
+            <ul name="selector-group" data-selector-group="main-group" class="poly-button-container base-font strip-list" style="margin: 0; float: right;">
+                <li><div class="poly-parallelogram wrapper vertical" style="width: 2rem; height: 9em;">
                     <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 9em; text-align: center;">
                         <span>Info</span><input type="radio" name="main-group-selector" value="1" class="strip-radio" checked>
                     </label>
                 </div></li>
-                <li><div class="poly-parallelogram wrapper vertical">
+                <li><div class="poly-parallelogram wrapper vertical" style="width: 2rem; height: 9em;">
                     <label class="vertical-text-right" style="display: inline-block; width: 2rem; height: 9em; text-align: center;">
                         <span>Posts</span><input type="radio" name="main-group-selector" value="2" class="strip-radio">
                     </label>
@@ -341,7 +159,7 @@
             
             </div>
             <!--RIGHT-->
-            <div style="position: absolute; height:100%; right: calc((var(--border-thickness) + var(--border-gap)) * -1); background-color: transparent;" class="border-block">
+            <div class="surrounding-block right">
                 
                 <div class="poly-clip apply-clip-outer" data-clip-sides="top" 
                     style="--corner-width: 50px; position: absolute; bottom: 0; height: 350px; width: 2rem; background-color: cyan; background-image: linear-gradient(267deg,magenta 10%, rgba(255, 255, 255, 0) 70%);">
@@ -356,12 +174,12 @@
 
             </div>
             <!--CORNER-->
-            <div style="position: absolute; right: calc((var(--border-thickness) + var(--border-gap)) * -1); bottom: calc((var(--border-thickness) + var(--border-gap)) * -1);  background-color: transparent;" class="border-block">
+            <div class="surrounding-block bottom-right-corner">
 
                 <div class="corner">
                     <div class="corner-inner">
                         <button title="Toggle QR" id="QR-button" class="qr-button">X</button>
-                        <img src="/QR.webp" width="100%">
+                        <img src="/PageImgs/QR.webp" width="100%">
                     </div>
                 </div>
 
@@ -387,46 +205,6 @@
         </filter>
     </svg>
 
-    <script>   
-    // scroll text
-    function enableScroll(scrollContainer, step = -0.1, updateFrequency = 0){
-        let scrollContent = scrollContainer.querySelector(".scroll-content");
-        
-        function scroll(){
-            if(step < 0){
-                scrollContent.style.left = (parseFloat(window.getComputedStyle(scrollContent).left) + step).toString() + "px";
-                if(scrollContent.firstElementChild.getBoundingClientRect().right < scrollContainer.getBoundingClientRect().left){
-                    scrollContent.appendChild(scrollContent.firstElementChild);
-                    scrollContent.style.left = "";// resets pos to start
-                }
-            }else{
-                scrollContent.style.right = (parseFloat(window.getComputedStyle(scrollContent).right) - step).toString() + "px";
-                if(scrollContent.lastElementChild.getBoundingClientRect().left > scrollContainer.getBoundingClientRect().right){
-                    scrollContent.prepend(scrollContent.lastElementChild);
-                    scrollContent.style.right = (scrollContent.offsetWidth - scrollContainer.offsetWidth).toString() + "px";
-                }
-            }
-        }
-
-        if(scrollContent && scrollContainer){
-            let stepOverride = scrollContainer.getAttribute("data-scroll-step");
-            if(stepOverride){ step = parseFloat(stepOverride); }
-            let updateOverride = scrollContainer.getAttribute("data-scroll-update");
-            if(updateOverride){ updateFrequency = parseFloat(updateOverride); }
-
-            if(step > 0){
-                scrollContent.style.right = (scrollContent.offsetWidth - scrollContainer.offsetWidth).toString() + "px";
-            }
-            setInterval(scroll, updateFrequency);
-        }
-    }
-
-    let scrolls = document.querySelectorAll(".scroll-container");
-    for(const scroll of scrolls){
-        enableScroll(scroll);
-    }
-
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
