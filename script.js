@@ -1,3 +1,19 @@
+let element = document.createElement("p");
+element.style.position = "absolute";
+element.style.inset = "0 auto auto 0";
+element.style.color = "white";
+element.textContent = window.devicePixelRatio;
+document.body.appendChild(element)
+
+
+let gBorderGap = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--global-border-gap"));
+document.documentElement.style.setProperty("--global-border-gap", `${gBorderGap * window.devicePixelRatio}px`);
+
+let gBorderWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--global-border-width"));
+document.documentElement.style.setProperty("--global-border-width", `${gBorderWidth * window.devicePixelRatio}px`);
+
+
+
 /*
   calc poly wapper shape
 */
@@ -354,9 +370,3 @@ for(const scroll of scrolls){
 	enableScroll(scroll);
 }
 
-let element = document.createElement("p");
-element.style.position = "absolute";
-element.style.inset = "0 auto auto 0";
-element.style.color = "white";
-element.textContent = window.devicePixelRatio;
-document.body.appendChild(element)
