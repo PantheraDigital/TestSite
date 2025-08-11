@@ -14,7 +14,7 @@ let gBorderWidth = parseInt(getComputedStyle(document.documentElement).getProper
 document.documentElement.style.setProperty("--global-border-width", `${gBorderWidth * window.devicePixelRatio}px`);
 
 let gFontSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("font-size"));
-document.documentElement.style.setProperty("gFontSize", `${gFontSize * window.devicePixelRatio}px`);
+document.documentElement.style.setProperty("font-size", `${gFontSize * window.devicePixelRatio}px`);
 
 element = document.createElement("p");
 element.style.position = "absolute";
