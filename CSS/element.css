@@ -1,4 +1,5 @@
 :root {
+    --dpi: 1;
     --block-size: 50px;
     --global-border-gap: 5px;
     --global-border-width: 3px;
@@ -52,6 +53,10 @@ body {
     font-family: 'Lucida Console', monospace;
 }
 
+.flip-h {
+    transform: scaleX(-1);
+}
+
 
 /*
  *      Main Block
@@ -72,6 +77,7 @@ body {
             var(--solid-x) var(--global-border-width), 100% 0,
             calc(100% - var(--global-border-width)) calc(100% - var(--solid-y)), calc(100% - var(--global-border-width)) calc(100% - var(--global-border-width)),
             calc(100% - var(--solid-x)) calc(100% - var(--global-border-width)), 0 100%, 100% 100%, 100% 0);
+
 }
 .main-content{
     background-color: #e3e4ece7; 
@@ -379,7 +385,6 @@ body {
 
 
 /*@media screen and (orientation: portrait) and (max-aspect-ratio: 9/18)
-(resolution: 100dpi)
 {
     :root {
         --global-border-gap: 10px;

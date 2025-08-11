@@ -7,6 +7,8 @@ element.textContent = `dpi ${window.devicePixelRatio}`;
 document.body.appendChild(element);
 
 
+document.documentElement.style.setProperty("--dpi", `${window.devicePixelRatio}px`);
+
 let gBorderGap = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--global-border-gap"));
 document.documentElement.style.setProperty("--global-border-gap", `${gBorderGap * window.devicePixelRatio}px`);
 
@@ -396,4 +398,3 @@ let scrolls = document.querySelectorAll(".auto-scroll-container");
 for(const scroll of scrolls){
 	enableScroll(scroll);
 }
-

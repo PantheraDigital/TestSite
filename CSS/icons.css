@@ -10,8 +10,8 @@
     position: relative;
     z-index: 0;
     vertical-align: var(--align);
-    width: 1em;
-    height: 1em;
+    width: calc(1em * var(--dpi, 1));
+    height: calc(1em * var(--dpi, 1));
 }
 /*the icon*/
 .icon::after{
