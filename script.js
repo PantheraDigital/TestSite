@@ -32,6 +32,14 @@ element.style.color = "white";
 element.textContent = `new font size ${gFontSize * window.devicePixelRatio}`;
 document.body.appendChild(element);
 
+element = document.createElement("p");
+element.style.position = "absolute";
+element.style.margin = "0";
+element.style.inset = "3em auto auto 0";
+element.style.color = "white";
+element.textContent = `actual font size ${parseInt(getComputedStyle(document.documentElement).getPropertyValue("font-size"))}`;
+document.body.appendChild(element);
+
 
 /*
   calc poly wapper shape
