@@ -12,6 +12,9 @@ document.documentElement.style.setProperty("--global-border-gap", `${gBorderGap 
 let gBorderWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--global-border-width"));
 document.documentElement.style.setProperty("--global-border-width", `${gBorderWidth * window.devicePixelRatio}px`);
 
+let gFontSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("font-size"));
+document.documentElement.style.setProperty("gFontSize", `${gFontSize * window.devicePixelRatio}px`);
+
 
 
 /*
