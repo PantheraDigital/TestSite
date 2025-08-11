@@ -353,3 +353,10 @@ let scrolls = document.querySelectorAll(".auto-scroll-container");
 for(const scroll of scrolls){
 	enableScroll(scroll);
 }
+
+let element = document.createElement("p");
+element.style.position = "absolute";
+element.style.inset = "0 auto auto 0";
+element.style.color = "white";
+element.textContent = window.devicePixelRatio;
+document.body.appendChild(element)
