@@ -1,9 +1,10 @@
 let element = document.createElement("p");
 element.style.position = "absolute";
+element.style.margin = "0";
 element.style.inset = "0 auto auto 0";
 element.style.color = "white";
-element.textContent = window.devicePixelRatio;
-document.body.appendChild(element)
+element.textContent = `dpi ${window.devicePixelRatio}`;
+document.body.appendChild(element);
 
 
 let gBorderGap = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--global-border-gap"));
@@ -15,6 +16,21 @@ document.documentElement.style.setProperty("--global-border-width", `${gBorderWi
 let gFontSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue("font-size"));
 document.documentElement.style.setProperty("gFontSize", `${gFontSize * window.devicePixelRatio}px`);
 
+element = document.createElement("p");
+element.style.position = "absolute";
+element.style.margin = "0";
+element.style.inset = "1em auto auto 0";
+element.style.color = "white";
+element.textContent = `font size ${gFontSize}`;
+document.body.appendChild(element);
+
+element = document.createElement("p");
+element.style.position = "absolute";
+element.style.margin = "0";
+element.style.inset = "2em auto auto 0";
+element.style.color = "white";
+element.textContent = `new font size ${gFontSize * window.devicePixelRatio}`;
+document.body.appendChild(element);
 
 
 /*
