@@ -398,3 +398,14 @@ let scrolls = document.querySelectorAll(".auto-scroll-container");
 for(const scroll of scrolls){
 	enableScroll(scroll);
 }
+
+/*
+  animate noise
+*/
+const turb = document.getElementById('turbulence');
+let baseFrequency = parseFloat(turb.getAttribute('baseFrequency'));
+function scrollNoise(){
+	baseFrequency += 0.00001
+	turb.setAttribute('baseFrequency', baseFrequency); 
+}
+setInterval(scrollNoise, 50)

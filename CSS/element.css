@@ -264,30 +264,7 @@ body {
     background-color: rgba(0, 0, 0, 0.377);
 }
 
-/*
- *      Dither
- */
-.dither {
-    filter: url("#discrete");
-}
 
-.dither .source {
-    /*filter: url("#gamma") opacity(0.5);*/
-    background:
-        linear-gradient(90deg, rgba(0, 0, 0, 1) 1%, rgba(255, 255, 255, 0) 60%),
-        linear-gradient(270deg, #B0C4DE 15%, #b0c4de3b 60%);
-}
-
-.dither .add {
-    filter: opacity(0.498046875);
-    pointer-events: none;
-    mix-blend-mode: screen;
-}
-
-.dither .bayer {
-    background: url("/PageImgs/xrwK0bK.png");
-    mix-blend-mode: overlay;
-}
 
 /*
  *      Featured Project
@@ -398,3 +375,74 @@ body {
         margin-top: -50px;
     }
 }*/
+
+
+
+
+.dither {
+    filter: url("#discrete");
+}
+.bayer {
+    background: url("../PageImgs/xrwK0bK.png");
+    mix-blend-mode: overlay;
+}
+.gamma{
+    filter: url("#gamma") opacity(0.5);
+}
+.noise{
+    filter: url("#noiseFilter");
+}
+.bright{
+    filter: contrast(170%) brightness(500%);
+}
+/* Chrome-specific */
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+  .bright {
+    filter: contrast(290%) brightness(500%);
+  }
+}
+
+.gradient-bg{
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 1) 1%, rgba(255, 255, 255, 0) 70%),
+        linear-gradient(0deg, #B0C4DE 15%, #b0c4de3b 70%);
+}
+
+.noise-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#filters{
+    display: none;
+}
+@-moz-document url-prefix() {
+    #filters{
+        display: block;
+        position: absolute;
+        height: 0;
+    }
+}
+
+/* Dither Only
+<div class="noise-container dither">
+    <div class="gradient-bg"></div>
+    <div class="bayer gamma" style="position: absolute; inset: 0;"></div>
+</div>
+*/
+/* Noise Only
+<div class="noise-container bright">
+    <div class="noise" style="position: absolute; inset: 0;"></div>
+    <div class="gradient-bg"></div>
+</div>
+*/
+/* Mix
+<div class="noise-container dither">
+    <div class="noise" style="position: absolute; inset: 0;"></div>
+    <div class="gradient-bg"></div>
+    <div class="bayer gamma" style="position: absolute; inset: 0;"></div>
+</div>
+*/
